@@ -1,6 +1,3 @@
-src/App.jsx
-This is the main component containing all the application's pages.
-
 import { useState, useEffect } from 'react';
 import {
   MessageSquareCode,
@@ -443,7 +440,6 @@ const StorePage = ({ setCurrentPage }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // Products available in the store
   const products = [
     {
       id: 1,
@@ -487,26 +483,6 @@ const StorePage = ({ setCurrentPage }) => {
     },
   ];
 
-  // Top Selling products for the new section
-  const topSellingProducts = [
-    {
-      id: 7,
-      name: 'Custom Website Creation',
-      description: 'Get a professional, responsive website built from the ground up to fit your unique brand and needs.',
-      icon: <Globe size={36} className="text-white" />,
-    },
-    {
-      id: 8,
-      name: 'Custom Discord Bots',
-      description: 'A Discord bot tailored to your community, with custom commands for moderation, games, or utility.',
-      icon: (
-        <svg className="h-9 w-9 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21.996 0.052C20.846 0.052 19.674 0.692 18.524 1.332C17.374 1.972 16.202 2.612 15.03 3.252C14.15 2.532 13.064 2.172 11.956 2.172C10.848 2.172 9.762 2.532 8.882 3.252C7.71 2.612 6.538 1.972 5.388 1.332C4.238 0.692 3.066 0.052 1.916 0.052C0.822 0.052 0.003 0.829 0.003 1.83C0.003 2.052 0.051 2.274 0.125 2.476C2.261 5.372 4.412 8.272 6.561 11.168C6.985 11.75 7.424 12.33 7.842 12.912C8.324 13.568 8.784 14.236 9.244 14.904C9.406 15.112 9.566 15.316 9.728 15.524C9.728 15.652 9.728 15.772 9.728 15.9C9.728 17.518 9.544 19.122 9.406 20.73C9.336 21.364 9.324 22.008 9.404 22.646C9.554 23.642 10.372 23.956 11.238 23.474C11.59 23.272 11.942 23.07 12.294 22.868C12.986 22.502 13.684 22.138 14.376 21.774C15.068 21.41 15.766 21.046 16.458 20.682C17.15 20.318 17.848 19.954 18.54 19.59C19.232 19.226 19.93 18.862 20.622 18.498C21.314 18.134 22.012 17.77 22.704 17.406C23.064 17.214 23.24 16.992 23.364 16.714C23.514 16.216 23.55 15.688 23.448 15.158C23.374 14.75 23.264 14.35 23.144 13.948C22.616 12.35 21.848 10.828 20.898 9.38C20.51 8.796 20.104 8.22 19.716 7.644C19.328 7.068 18.922 6.492 18.534 5.916C18.146 5.34 17.758 4.764 17.37 4.188C17.068 3.738 16.766 3.288 16.464 2.838C15.82 1.834 15.052 0.89 14.152 0.052C13.252 -0.786 12.186 -0.198 11.24 -0.056C10.294 0.086 9.348 0.228 8.402 0.37C7.456 0.512 6.51 0.654 5.564 0.796C4.852 0.89 4.14 0.984 3.428 1.078C2.928 1.144 2.428 1.208 1.928 1.272C1.528 1.326 1.128 1.38 0.728 1.434C0.45 1.472 0.174 1.51 0.003 1.55C-0.125 1.63 -0.183 1.76 -0.147 1.91C-0.111 2.06 0.003 2.19 0.125 2.27Z"/>
-          </svg>
-      ),
-    },
-  ];
-
   const handleInquireClick = (product) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
@@ -519,7 +495,7 @@ const StorePage = ({ setCurrentPage }) => {
 
   const handleEmailSubmit = (customerEmail, productName) => {
     if (!customerEmail) {
-      alert('Please provide your email address.');
+      setMessage('Please provide your email address.');
       return;
     }
     const subject = encodeURIComponent(`Inquiry about ${productName}`);
@@ -540,36 +516,6 @@ const StorePage = ({ setCurrentPage }) => {
       <h2 className="text-3xl md:text-5xl font-bold text-center mb-12 text-white">
         Our <span className="text-purple-400">Store</span>
       </h2>
-      
-      {/* Top Selling Section */}
-      <div className="mb-12">
-        <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 text-center">
-          <span className="text-yellow-400">🔥</span> Top Selling
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {topSellingProducts.map((product) => (
-            <div
-              key={product.id}
-              className="bg-gray-800 rounded-xl p-8 shadow-2xl border border-gray-700 flex flex-col items-center text-center transition-all duration-300 hover:scale-105 hover:border-yellow-500"
-            >
-              <div className="flex items-center justify-center w-16 h-16 bg-yellow-600 rounded-full mb-6 mx-auto">
-                {product.icon}
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-2">{product.name}</h3>
-              <p className="text-gray-300 mb-4 flex-grow">{product.description}</p>
-              
-              <button
-                onClick={() => handleInquireClick(product)}
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg flex items-center justify-center transition-transform duration-300 transform hover:scale-105"
-              >
-                <ShoppingCart size={20} className="mr-2" />
-                Inquire Now
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {products.map((product) => (
           <div
