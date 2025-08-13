@@ -1,3 +1,6 @@
+src/App.jsx
+This is the main component containing all the application's pages.
+
 import { useState, useEffect } from 'react';
 import {
   MessageSquareCode,
@@ -516,7 +519,7 @@ const StorePage = ({ setCurrentPage }) => {
 
   const handleEmailSubmit = (customerEmail, productName) => {
     if (!customerEmail) {
-      setMessage('Please provide your email address.');
+      alert('Please provide your email address.');
       return;
     }
     const subject = encodeURIComponent(`Inquiry about ${productName}`);
